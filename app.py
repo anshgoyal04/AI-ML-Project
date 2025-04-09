@@ -2,6 +2,7 @@ from dotenv import load_dotenv
 import os
 import openai
 import streamlit as st
+from openai import OpenAI
 
 # Load API key from .env
 load_dotenv()
@@ -17,17 +18,23 @@ if "candidate_info" not in st.session_state:
     st.session_state.candidate_info = {}
 
 # Function to call OpenAI API
+client = OpenAI()
 def generate_questions(tech_stack):
     prompt = (
         f"Based on the following tech stack: {tech_stack}, "
         "generate 3-5 technical questions to assess the candidate’s proficiency. "
         "Keep questions relevant and appropriately challenging."
     )
-    response = openai.ChatCompletion.create(
-        model="gpt-3.5-turbo", 
-        messages=[{"role": "user", "content": prompt}]
+
+    # Call the GPT model using new OpenAI syntax
+    response = client.chat.completions.create(
+        model="gpt-3.5-turbo",
+        messages=[
+            {"role": "user", "content": prompt}
+        ]
     )
-    return response.choices[0].message["content"]
+
+    return response.choices[0].message.content
 
 # Main logic
 if st.session_state.step == 0:
