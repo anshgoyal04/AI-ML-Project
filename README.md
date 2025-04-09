@@ -29,5 +29,5 @@ An intelligent AI-powered chatbot that screens tech candidates based on their sk
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/your-username/AI-ML.git
+git clone https://github.com/anshgoyal04/AI-ML-Project
 cd AI-ML
