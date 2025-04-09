@@ -30,4 +30,4 @@ An intelligent AI-powered chatbot that screens tech candidates based on their sk
 
 ```bash
 git clone https://github.com/anshgoyal04/AI-ML-Project
-cd AI-ML
+cd AI-ML-project
