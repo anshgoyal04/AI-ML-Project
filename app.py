@@ -1,12 +1,11 @@
-from dotenv import load_dotenv
-import os
-import openai
 import streamlit as st
 from openai import OpenAI
+from dotenv import load_dotenv
+import os
 
-# Load API key from .env
+# Load environment variables (your OpenAI API key)
 load_dotenv()
-openai.api_key = os.getenv("OPENAI_API_KEY")
+client = OpenAI()
 
 st.set_page_config(page_title="Hiring Assistant Chatbot", layout="centered")
 st.title("🤖 TalentScout - AI Hiring Assistant")
@@ -17,8 +16,7 @@ if "step" not in st.session_state:
 if "candidate_info" not in st.session_state:
     st.session_state.candidate_info = {}
 
-# Function to call OpenAI API
-client = OpenAI()
+# Function to generate technical questions
 def generate_questions(tech_stack):
     prompt = (
         f"Based on the following tech stack: {tech_stack}, "
@@ -26,7 +24,6 @@ def generate_questions(tech_stack):
         "Keep questions relevant and appropriately challenging."
     )
 
-    # Call the GPT model using new OpenAI syntax
     response = client.chat.completions.create(
         model="gpt-3.5-turbo",
         messages=[
@@ -36,7 +33,7 @@ def generate_questions(tech_stack):
 
     return response.choices[0].message.content
 
-# Main logic
+# Main chatbot flow
 if st.session_state.step == 0:
     st.write("Hello! 👋 I'm your AI Hiring Assistant from TalentScout.")
     if st.button("Start Screening"):
