@@ -2,7 +2,7 @@ import streamlit as st
 import openai
 
 # Replace with your actual OpenAI API Key (You can also use a .env file to load it securely)
-openai.api_key = "YOUR_OPENAI_API_KEY"
+openai.api_key = "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"
 
 st.set_page_config(page_title="Hiring Assistant Chatbot", layout="centered")
 st.title("🤖 TalentScout - AI Hiring Assistant")
