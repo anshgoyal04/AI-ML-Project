@@ -1,13 +1,11 @@
 import streamlit as st
-from openai import OpenAI
+import openai
 from dotenv import load_dotenv
 import os
 
-# Load environment variables (your OpenAI API key)
+# Load environment variables
 load_dotenv()
-
-# Initialize OpenAI client using the key from .env
-client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+openai.api_key = os.getenv("OPENAI_API_KEY")
 
 st.set_page_config(page_title="Hiring Assistant Chatbot", layout="centered")
 st.title("🤖 TalentScout - AI Hiring Assistant")
@@ -27,13 +25,13 @@ def generate_questions(tech_stack):
     )
 
     try:
-        response = client.chat.completions.create(
+        response = openai.ChatCompletion.create(
             model="gpt-3.5-turbo",
             messages=[
                 {"role": "user", "content": prompt}
             ]
         )
-        return response.choices[0].message.content
+        return response.choices[0].message["content"]
     except Exception as e:
         return f"❌ Error generating questions: {str(e)}"
 
