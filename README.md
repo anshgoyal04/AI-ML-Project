@@ -24,13 +24,6 @@ An intelligent AI-powered chatbot that screens tech candidates based on their sk
 
 ---
 
-##  Getting Started
-
-### 1. Clone the repository
-
-```bash
-git clone https://github.com/anshgoyal04/AI-ML-Project
-cd AI-ML-project
 ---
 ##  Challenges & Solutions
 - API key exposed on GitHub → Revoked key, added .env to .gitignore
@@ -49,3 +42,10 @@ AI-ML-Project/
 ├── requirements.txt
 ├── .gitignore
 └── README.md
+
+### Clone the repository
+
+```bash
+git clone https://github.com/anshgoyal04/AI-ML-Project
+cd AI-ML-project
+
