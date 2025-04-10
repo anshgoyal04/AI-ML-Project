@@ -5,10 +5,11 @@ import os
 
 # Load environment variables
 load_dotenv()
-openai.api_key = os.getenv("OPENAI_API_KEY")
 
 # Test whether the API key was loaded correctly
 print("Loaded API Key:", os.getenv("OPENAI_API_KEY"))  # ✅ Debugging line
+
+openai.api_key = os.getenv("OPENAI_API_KEY")
 
 st.set_page_config(page_title="Hiring Assistant Chatbot", layout="centered")
 st.title("🤖 TalentScout - AI Hiring Assistant")
