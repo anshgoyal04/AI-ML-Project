@@ -7,7 +7,7 @@ import os
 load_dotenv()
 
 # Test whether the API key was loaded correctly
-print("Loaded API Key:", os.getenv("OPENAI_API_KEY"))  # ✅ Debugging line
+st.write("Loaded API Key:", os.getenv("OPENAI_API_KEY"))  # ✅ Debugging line
 
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
