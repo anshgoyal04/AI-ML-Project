@@ -5,7 +5,7 @@ An intelligent AI-powered chatbot that screens tech candidates based on their sk
 
 ---
 
-## 📌 Features
+##  Features
 
 - Collects candidate information (name, contact, experience, desired role)
 - Asks for the candidate’s tech stack
@@ -15,7 +15,7 @@ An intelligent AI-powered chatbot that screens tech candidates based on their sk
 
 ---
 
-## 🛠️ Tech Stack
+##  Tech Stack
 
 - Python
 - Streamlit
@@ -24,7 +24,7 @@ An intelligent AI-powered chatbot that screens tech candidates based on their sk
 
 ---
 
-## 🚀 Getting Started
+##  Getting Started
 
 ### 1. Clone the repository
 
