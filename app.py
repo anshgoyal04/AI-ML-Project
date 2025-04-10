@@ -5,6 +5,8 @@ import os
 
 # Load environment variables (your OpenAI API key)
 load_dotenv()
+
+# Initialize OpenAI client using the key from .env
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 st.set_page_config(page_title="Hiring Assistant Chatbot", layout="centered")
@@ -24,14 +26,16 @@ def generate_questions(tech_stack):
         "Keep questions relevant and appropriately challenging."
     )
 
-    response = client.chat.completions.create(
-        model="gpt-3.5-turbo",
-        messages=[
-            {"role": "user", "content": prompt}
-        ]
-    )
-
-    return response.choices[0].message.content
+    try:
+        response = client.chat.completions.create(
+            model="gpt-3.5-turbo",
+            messages=[
+                {"role": "user", "content": prompt}
+            ]
+        )
+        return response.choices[0].message.content
+    except Exception as e:
+        return f"❌ Error generating questions: {str(e)}"
 
 # Main chatbot flow
 if st.session_state.step == 0:
@@ -60,13 +64,19 @@ elif st.session_state.step == 2:
     st.subheader("💻 Declare Your Tech Stack")
     tech_stack = st.text_area("List your tech stack (e.g., Python, React, MySQL)")
     if st.button("Generate Questions"):
-        st.session_state.tech_stack = tech_stack
-        st.session_state.questions = generate_questions(tech_stack)
-        st.session_state.step = 3
+        if tech_stack.strip() == "":
+            st.warning("⚠️ Please enter your tech stack before generating questions.")
+        else:
+            st.session_state.tech_stack = tech_stack
+            st.session_state.questions = generate_questions(tech_stack)
+            st.session_state.step = 3
 
 elif st.session_state.step == 3:
     st.subheader("🧪 Technical Questions")
-    st.markdown(st.session_state.questions)
+    if st.session_state.questions:
+        st.markdown(st.session_state.questions)
+    else:
+        st.warning("⚠️ No questions were generated. Please check your tech stack or try again.")
     if st.button("End Conversation"):
         st.session_state.step = 4
 
