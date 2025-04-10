@@ -5,7 +5,7 @@ import os
 
 # Load environment variables (your OpenAI API key)
 load_dotenv()
-client = OpenAI()
+client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 st.set_page_config(page_title="Hiring Assistant Chatbot", layout="centered")
 st.title("🤖 TalentScout - AI Hiring Assistant")
